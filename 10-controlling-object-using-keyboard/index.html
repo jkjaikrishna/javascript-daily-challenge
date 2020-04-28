@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Controlling an Object using Keyboard</title>
+    <style>
+        .instructions {
+            position: absolute;
+            right: 2%;
+            top: 5%;
+            font-size: 14px;
+            font-family: monospace;
+        }
+
+        .instructions h4 {
+            color: #9a9a9a;
+        }
+        .instructions p {
+            color: #9f9f9f;
+        }
+    </style>
+</head>
+<body>
+    <img 
+        id= "object" 
+        src= "eye.png" 
+        width= "100" 
+        style="position: absolute" 
+    />
+
+    <div class= "instructions">
+        <h4>Use alt + Left arrow/ Right arrow to rotate the object respect to X-axis.</h4>
+        <p>* Use Left Alt key</p>
+    </div>
+    <script>
+        const object = document.getElementById('object');
+        
+        document.onkeydown = moveObject;
+
+        const LEFT_KEY = 37,
+              UP_KEY = 38,
+              RIGHT_KEY = 39,
+              DOWN_KEY = 40;
+
+        let speed = 20;
+        let deg = 0;
+              
+        function moveObject(event) {
+            console.log(event.keyCode, event.altKey);
+            let key = event.keyCode;
+            if(event.altKey && key == LEFT_KEY) {
+                deg -= 10;
+                object.style.transform = 'rotate(' + deg + 'deg)';
+            }
+            else if(event.altKey && key == RIGHT_KEY) {
+                deg += 10;
+                object.style.transform = 'rotate(' + deg + 'deg)';
+            }
+            else if(key == LEFT_KEY) {
+                object.style.left = object.offsetLeft - speed + 'px';
+            }
+            else if(key == UP_KEY) {
+                object.style.top = object.offsetTop - speed + 'px';
+            }
+            else if(key == RIGHT_KEY) {
+                object.style.left = object.offsetLeft + speed + 'px';
+            }
+            else if(key == DOWN_KEY) {
+                object.style.top = object.offsetTop + speed + 'px';
+            }
+
+        }
+    </script>
+</body>
+</html>
