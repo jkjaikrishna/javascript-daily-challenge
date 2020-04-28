@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Speech Converter</title>
+    <style>
+        body {
+            background-color: #f6f6f6;;
+        }
+        .container {
+            background-color: #f6f6f6;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 400px;
+            padding: 20px;
+            box-shadow: 0 0 10px 0 #ccc;
+        }
+        .container textarea {
+            width: 390px;
+            height: 100px;
+            resize: none;
+            outline: none;
+            border: 1px solid #ccc;
+        }
+        .container label {
+            display: block;
+            width: 400px;
+        }
+        .container label span {
+            width: 100px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .container label select, .container label input {
+            width: 290px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #f6f6f6;
+            padding: 10px 20px;
+            color: #000;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .button:hover {
+            box-shadow: 4px 4px 10px 0 #ccc;
+        }
+
+    </style>
+</head>
+<body>
+    <div class= "container">
+        <h3>Text to speech Converter</h3>
+        <textarea id= "textContent" placeholder="Enter your message here to hear.."></textarea>
+        <label>
+            <span>Voice</span>
+            <select id= "voiceOptions"></select>
+        </label>
+        <label>
+            <span>Volume</span>
+            <input 
+                type= "range" 
+                id= "volumeSlider" 
+                min="0" 
+                max= "1" 
+                value= "0.5" 
+                step= "0.1" 
+            />
+        </label>
+        <label>
+            <span>Rate</span>
+            <input
+                type= "range"
+                id= "rateSlider"
+                min="0" 
+                max= "1" 
+                value= "0.5" 
+                step= "0.1" 
+            />
+        </label>
+        <label>
+            <span>Pitch</span>
+            <input
+                type= "range"
+                id= "pitchSlider"
+                min="0" 
+                max= "2" 
+                value= "1.5" 
+                step= "0.1" 
+            />
+        </label>
+        <div class= "button" onclick= "speak();">Speak</div>
+    </div>
+
+    <script>
+
+        function checkCompatibility() {
+            if(!('speechSynthesis' in window)) {
+                alert('Your Browser is Not supported this feature.');
+            }
+        }
+        let textContent = document.getElementById('textContent');
+        let voiceOptions = document.getElementById('voiceOptions');
+        let volumeSlider = document.getElementById('volumeSlider');
+        let rateSlider = document.getElementById('rateSlider');
+        let pitchSlider = document.getElementById('pitchSlider');
+
+        let voiceMap = [];
+
+        function loadVoices() {
+            let voices = speechSynthesis.getVoices();
+            for(let i= 0; i < voices.length; i++) {
+                let voice = voices[i];
+                console.log('voice', voice);
+                let option = document.createElement('option');
+                option.value = voice.name;
+                option.innerHTML = voice.name;
+                voiceOptions.appendChild(option);
+                voiceMap[voice.name] = voice;
+            }
+        }
+
+        window.speechSynthesis.onvoiceschanged = function(e) {
+            loadVoices();
+        }
+
+        function speak() {
+            console.log('dvdvdvdv');
+            let message = new SpeechSynthesisUtterance();
+            message.volume = volumeSlider.value;
+            message.voice = voiceMap[voiceOptions.value];
+            message.rate = rateSlider.value;
+            message.pitch = pitchSlider.value;
+            message.text = textContent.value;
+
+            window.speechSynthesis.speak(message);
+        }
+    </script>
+</body>
+</html>

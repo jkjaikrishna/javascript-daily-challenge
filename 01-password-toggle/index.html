@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Password Toggle</title>
+    <style>
+        body {
+            background: #e8e8e8;
+        }
+        .form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            padding: 20px;
+            box-shadow: 0 0 10px 0 #ccc;
+            background: #fff;
+        }
+        input[type=text], input[type=password], button {
+            outline: none;
+            border: none;
+            border: 1px solid #efefef;
+            width: 300px;
+            height: 40px;
+            background: none;
+            color: #555;
+            box-shadow: 0px 3px 10px 0 #ccc;
+            padding-left: 10px;
+        }
+        button {
+            width: 100px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #e0e0e0;
+            color: #000;
+        }
+        .pwd-content {
+            position: relative;
+        }
+        .pwd-content img {
+            position: absolute;
+            top: 10px;
+            right: 8px;
+            cursor: pointer;
+            opacity: 0.5;
+        }
+     </style>
+</head>
+<body>
+    <div class= "form-container">
+        <h3>Show Or Hide Password</h3>
+        <input type= "text" placeholder= "Username" />
+        <br />
+        <br />
+        <div class= "pwd-content">
+            <input id= "pwd" type= "password" placeholder= "Your password here.." />
+            <img id= "togglePwd" src= "eye.png" width= "20" /> 
+        </div>
+        <button>Ok</button>
+        <button>Cancel</button>
+    </div>
+
+    <script>
+        const pwd = document.getElementById('pwd');
+        const togglePwd = document.getElementById('togglePwd');
+
+        togglePwd.onmousedown = showPassword;
+        togglePwd.onmouseup = hidePassword;
+
+        function showPassword() {
+            pwd.setAttribute('type', 'text');
+            togglePwd.style.opacity = 1;
+        }
+
+        function hidePassword() {
+            pwd.setAttribute('type', 'password');
+            togglePwd.style.opacity = 0.5;
+        }
+    </script>
+</body>
+</html>

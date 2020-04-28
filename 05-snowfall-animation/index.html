@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Snowfall Animation</title>
+    <style>
+        body {
+            background: #ccc;
+            overflow: hidden;
+        }
+        #canvas {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            box-shadow: 0 0 10px 0 #999;
+        }
+    </style>
+</head>
+<body>
+    <canvas id= "canvas" width= "1366" height= "768"></canvas>
+
+    <script>
+        function init() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            let w = canvas.width;
+            let h = canvas.height;
+            let flakes = [];
+
+
+            let bg = new Image();
+            bg.src = "bg.png";
+
+            function snowfall() {
+                ctx.clearRect(0, 0, w, h);
+                ctx.drawImage(bg, 0, 0);
+                addFlake();
+                snow();
+            }
+
+            function addFlake() {
+                let x = Math.ceil(Math.random() * w);
+                let s = Math.ceil(Math.random() * 4);
+                flakes.push({ x, y: 0, s});
+            }
+
+            function snow() {
+                for(let i = 0; i< flakes.length; i++) {
+                    let flake = flakes[i];
+                    ctx.beginPath();
+                    ctx.fillStyle = "rgba(255, 255 ,255, 0.7";
+                    ctx.arc(flake.x, flakes[i].y+= flake.s/2, flake.s/2, 0, 2 * Math.PI);
+                    ctx.fill();
+                    if(flakes[i].y > h) {
+                        flakes.splice(i, 1);
+                    }
+                }
+            }
+
+            setInterval(snowfall, 20);
+        }
+        window.onload = init;
+    </script>
+
+</body>
+</html>

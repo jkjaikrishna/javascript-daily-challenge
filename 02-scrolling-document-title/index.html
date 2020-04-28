@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling Document Title - This title scroll automatically</title>
+</head>
+<body>
+    <script>
+        let title = document.title;
+        let i = 1;
+
+        function scrollTitle() {
+            let titleLength = document.title.length;
+            if(titleLength == 0) {
+                i = 0;
+            }
+            document.title = title.substring(i, title.length);
+            i++;
+            setTimeout(scrollTitle, 200);
+        }
+
+        scrollTitle();
+
+
+    </script>
+</body>
+</html>

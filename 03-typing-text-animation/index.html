@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Text Animation</title>
+    <style>
+        .box {
+            margin: 20% auto;
+            width: 500px;
+            height: 100px;
+            padding: 5px 10px;
+            background-color: #cfcfcf;
+            color: #202020;
+            font-size: 18px;
+            border: 3px solid #afafaf;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box-element" class= "box"></div>
+    <script>
+        let boxElement = document.getElementById('box-element');
+        let sampleString = "This string will animate like typing text in keyboard, and it will continue in infinite time with a speed of 100ms";
+        let stringArray = sampleString.split('');
+
+        const animate = () => {
+            if(stringArray.length > 0) {
+                boxElement.innerHTML += stringArray.shift();
+            }
+            else {
+                boxElement.innerHTML = '';
+                stringArray = sampleString.split('');
+            }
+            setTimeout(animate, 100);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

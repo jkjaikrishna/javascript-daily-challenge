@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Ball Moving Animations</title>
+</head>
+<body>
+    <script>
+        const ball = document.createElement('img');
+        document.body.appendChild(ball);
+        ball.src = "ball.png";
+        ball.style.width = "80px";
+        ball.style.left = "0px";
+        ball.style.position = "absolute";
+
+        let boundX = window.innerWidth;
+        let boundY = window.innerHeight;
+
+        let speed = 10;
+        let x = 1;
+        let y = 1;
+
+        function ballAnimation() {
+            let posX = ball.offsetLeft;
+            let posY = ball.offsetTop;
+
+            if(posX + ball.offsetWidth > boundX || posX < 0) {
+                x*= -1;
+            }
+
+            if(posY + ball.offsetHeight > boundY || posY < 0) {
+                x*= -1;
+            }
+
+            ball.style.left = ball.x + (speed * x) + 'px';
+            ball.style.top = ball.y + (speed * y) + 'px';
+
+
+            setTimeout(ballAnimation, 20);
+        }
+
+        ballAnimation();
+
+    </script>
+</body>
+</html>
