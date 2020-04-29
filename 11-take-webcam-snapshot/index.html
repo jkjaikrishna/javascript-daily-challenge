@@ -27,7 +27,7 @@
 
         function streamWebCam(stream) {
             console.log(stream);
-            video.src = window.URL.createObjectURL(stream);
+            video.srcObject = stream;
             video.play();
         }
 
