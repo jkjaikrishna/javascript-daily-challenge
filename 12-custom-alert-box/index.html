@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Custom Alert Button</title>
+    <style>
+        body {
+            font-family: 'Arial';
+        }
+        .button-group {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        .button-group button {
+            padding: 10px 20px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            margin: 10px;
+        }
+        .button-group button:hover {
+            cursor: pointer;
+            box-shadow: 0 0 10px 0 #ccc;
+        }
+        .dialog-container {
+            position: absolute;
+            left: 50%;
+            top: -30%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 400px;
+            background: #fff;
+            padding: 10px;
+            border: 2px solid #ddd;
+            box-shadow: 1px 1px 5px 1px #ccc;
+            border-radius: 10px;
+            opacity: 0;
+            transition: all 0.3s linear 0s;
+        }
+        .dialog-header {
+            padding: 10px;
+            font-weight: bold;
+            background: #575757;
+            color: #f6f7f8;
+        }
+        .dialog-body {
+            padding: 10px;
+            line-height: 30px;
+        }
+        .dialog-footer {
+            text-align: center;
+            background: #f5f5f2;
+            padding: 3px 0;
+        }
+        .dialog-footer a {
+            display: inline-block;
+            width: 100px;
+            padding: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #eee;
+            cursor: pointer;
+        }
+        .dialog-footer a:active {
+            box-shadow: inset 2px 2px 4px 0 #ccc;
+            color: #666;
+        }
+
+    </style>
+</head>
+<body>
+    <div class= "button-group">
+        <button onclick= "alert('This is our alert dialog. Press \'Ok\' to close this.')">Default Button</button>
+        <button onclick= "CustomAlert.show('This is our alert dialog. Press \'Ok\' to close this.')">Custom Button</button>
+    </div>
+    <div id= "dialog-container" class= "dialog-container">
+        <div class= "dialog-header">Custom Alert Dialog</div>
+        <div id= "dialog-body" class= "dialog-body">This is the custom alert message. Click Ok to close this.</div>
+        <div class= "dialog-footer">
+            <a onclick= "CustomAlert.close()">Ok</a>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('dialog-container');
+        const CustomAlert = new function(msg) {
+            this.show = function(msg) {
+                let content = document.getElementById('dialog-body');
+                container.style.top = '30%';
+                container.style.opacity = 1;
+                content.textContent = msg;
+            }
+
+            this.close = function() {
+                container.style.top = '-30%';
+                container.style.opacity = 0;
+            }
+        }
+    </script>
+</body>
+</html>
