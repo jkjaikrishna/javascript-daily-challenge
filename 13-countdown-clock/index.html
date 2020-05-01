@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Countdown clock</title>
+    <style>
+        body {
+            background: #f6f6f6;
+        }
+        .count-down-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            text-align: center;
+            background: #ddd;
+            border: 1px solid #999;
+            padding: 10px;
+            box-shadow: 0 0 5px 3px #ccc; 
+        }
+        .info {
+            font-size: 80px;
+        }
+    </style>
+</head>
+<body>
+    <table class= "count-down-container">
+        <tr class= "info">
+            <td colspan= "4">New Year Countdown</td>
+        </tr>
+        <tr class= "info">
+            <td id= "days">14</td>
+            <td id= "hours">14</td>
+            <td id= "minutes">14</td>
+            <td id= "seconds">14</td>
+        </tr>
+        <tr>
+            <td>Days</td>
+            <td>Hours</td>
+            <td>Minutes</td>
+            <td>Seconds</td>
+        </tr>
+    </table>
+    <script>
+
+        function countdown() {
+            const daysColumn = document.getElementById('days');
+            const hoursColumn = document.getElementById('hours');
+            const minutesColumn = document.getElementById('minutes');
+            const secondsColumn = document.getElementById('seconds');
+
+            const now = new Date();
+            const eventDate = new Date(2021, 1, 1);
+
+            let currentTime = now.getTime();
+            let eventTime = eventDate.getTime();
+
+            let remTime = eventTime - currentTime;
+
+            let seconds = Math.floor(remTime/1000);
+            let minutes = Math.floor(seconds/60);
+            let hours = Math.floor(minutes/60);
+            let days= Math.floor(hours/24);
+
+            hours %= 24;
+            minutes %= 60;
+            seconds %= 60;
+
+            hours =  hours < 10 ? `0${hours}` : hours;
+            minutes =  minutes < 10 ? `0${minutes}` : minutes;
+            seconds =  seconds < 10 ? `0${seconds}` : seconds;
+
+            daysColumn.textContent = days;
+            hoursColumn.textContent =hours;
+            minutesColumn.textContent = minutes;
+            secondsColumn.textContent = seconds;
+
+            setTimeout(countdown, 1000);
+
+        }
+
+        countdown();
+
+    </script>
+</body>
+</html>
