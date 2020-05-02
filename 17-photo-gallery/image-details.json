@@ -1,0 +1,42 @@
+let images = [
+    {
+        url: '1.jpg',
+        caption: '404 wallpaper',
+        info: 'Sample info'
+    },
+    {
+        url: '2.jpg',
+        caption: '404 second wallpaper',
+        info: 'Sample info'
+    },
+    {
+        url: '3.jpg',
+        caption: '404 third wallpaper',
+        info: 'Sample info'
+    },
+    {
+        url: '4.jpg',
+        caption: '404 fourth wallpaper',
+        info: 'Sample info'
+    },
+    {
+        url: '5.jpg',
+        caption: '404 fifth wallpaper',
+        info: 'Sample info'
+    },
+    {
+        url: '6.jpg',
+        caption: '404 sixth wallpaper',
+        info: 'Sample info'
+    },
+    {
+        url: '7.jpg',
+        caption: '404 seventh wallpaper',
+        info: 'Sample info'
+    },
+    {
+        url: '8.jpg',
+        caption: '404 eighth wallpaper',
+        info: 'Sample info'
+    },
+];
