@@ -10,12 +10,18 @@ html, body, .container {
 
 body {
     background: #272738;
+    font-family: cursive;
 }
 
 .container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.header {
+    color: #fff;
 }
 
 .gallery {
@@ -36,6 +42,7 @@ body {
 .main-view {
     width: 100%;
     opacity: 0;
+    cursor: pointer;
 
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;

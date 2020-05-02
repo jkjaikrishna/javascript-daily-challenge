@@ -36,10 +36,47 @@ function loadImage(index) {
     let image = images[index];
     mainView.src = 'images/' + image.url;
     mainView.setAttribute('data-index', index);
+    mainView.setAttribute('id', 'image-' + index);
     mainView.style.opacity = 1;
     caption.textContent = image.caption;
     info.textContent = image.info;
 
+}
+
+function fullScreenImage() {
+    toggleFullscreen(mainView);
+}
+
+function toggleFullscreen(el) {
+    if(document.fullscreenElement || document.mozFullScreenElement 
+        || document.webkitFullscreenElement || document.msFullscreenElement) {
+            if(document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+            else if(document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            }
+            else if(document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+            else if(document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+        else {
+            if(document.documentElement.requestFullscreen) {
+                el.requestFullscreen();
+            }
+            else if(document.documentElement.mozRequestFullScreen) {
+                el.mozRequestFullScreen();
+            }
+            else if(document.documentElement.webkitRequestFullscreen) {
+                el.webkitRequestFullscreen();
+            }
+            else if(document.documentElement.msRequestFullscreen) {
+                el.msRequestFullscreen();
+            }
+        }
 }
 
 initGallery();

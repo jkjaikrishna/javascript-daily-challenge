@@ -8,9 +8,19 @@
 </head>
 <body>
     <div class="container">
+        <div class= "header">
+            <h1>404 Page Wallpaper Gallery</h1>
+            <div class= "options">
+                <ol>
+                    <li>Auto sliding images</li>
+                    <li>Thumbnail Click to main View</li>
+                    <li>Full screen mode sliding</li>
+                </ol>
+            </div>
+        </div>
         <div class="gallery">
             <div class="main-image-section">
-                <img id="main-view" class="main-view" src= "images/1.jpg"/>
+                <img id="main-view" class="main-view" src= "images/1.jpg" onclick= "fullScreenImage();"/>
                 <div class="caption-container">
                     <div id="caption">This is the caption</div>
                     <div id="info">This is info message</div>
