@@ -18,20 +18,28 @@ function initGallery() {
     }
 };
 
+function slideImage() {
+    let currentIndex = parseInt(mainView.getAttribute('data-index'));
+    currentIndex = currentIndex + 1 == images.length ? 1 : currentIndex + 1;
+    loadImage(currentIndex);
+    setTimeout(slideImage, 3000);
+
+}
+
 function changeImage(event) {
     let target = event.currentTarget;
     let index = target.getAttribute('data-index');
     loadImage(index);
-
 }
 
 function loadImage(index) {
     let image = images[index];
     mainView.src = 'images/' + image.url;
+    mainView.setAttribute('data-index', index);
     caption.textContent = image.caption;
     info.textContent = image.info;
 
-
-
 }
+
 initGallery();
+setTimeout(slideImage, 3000);
