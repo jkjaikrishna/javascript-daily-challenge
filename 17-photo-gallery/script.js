@@ -4,18 +4,18 @@ const info = document.getElementById('info');
 
 const thumbnails = document.getElementById('thumbnails');
 
+for(let i= 0; i< images.length; i++) {
+    let image = images[i];
+    let img = document.createElement('img');
+    img.src = 'images/' + images[i].url;
+    img.setAttribute('width', 170);
+    img.setAttribute('data-index', i);
+    img.addEventListener('click', changeImage);
+    thumbnails.appendChild(img);
+}
+
 function initGallery() {
     loadImage(0);
-
-    for(let i= 0; i< images.length; i++) {
-        let image = images[i];
-        let img = document.createElement('img');
-        img.src = 'images/' + images[i].url;
-        img.setAttribute('width', 170);
-        img.setAttribute('data-index', i);
-        img.addEventListener('click', changeImage);
-        thumbnails.appendChild(img);
-    }
 };
 
 function slideImage() {
@@ -36,6 +36,7 @@ function loadImage(index) {
     let image = images[index];
     mainView.src = 'images/' + image.url;
     mainView.setAttribute('data-index', index);
+    mainView.style.opacity = 1;
     caption.textContent = image.caption;
     info.textContent = image.info;
 

@@ -35,6 +35,11 @@ body {
 
 .main-view {
     width: 100%;
+    opacity: 0;
+
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
 }
 
 .caption-container {
