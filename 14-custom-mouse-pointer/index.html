@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Custom Mouse Pointer</title>
+    <style>
+        body {
+            background: #ccc;
+            cursor: none;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #custom-pointer {
+            position: absolute;
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img src= "eye.png" id="custom-pointer" />
+
+    <script>
+        const pointer= document.getElementById('custom-pointer');
+        document.body.onmousemove = applyPointer;
+
+        function applyPointer() {
+            pointer.style.left = event.clientX - (pointer.offsetWidth/2) + 'px';
+            pointer.style.top = event.clientY - (pointer.offsetHeight/2) + 'px';
+        }
+    </script>
+</body>
+</html>
