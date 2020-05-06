@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Gun Shot Effect</title>
+    <style>
+        .gun-shot {
+            position: absolute;
+            width:200px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h3>Click anyware in the frame to trigger the shooting</h3>
+    <img id= "gun-shot" src= "gunshot.png" class= "gun-shot" style= "display: none;" />
+    <script>
+        let gunShot = document.getElementById('gun-shot');
+
+        window.onclick = shoot;
+
+        function shoot(event) {
+            let el = gunShot.cloneNode();
+            document.body.appendChild(el);
+
+            el.style.display = '';
+            el.style.left = event.clientX - (el.offsetWidth/2) + 'px';
+            el.style.top = event.clientY - (el.offsetHeight/2) + 'px';
+        }
+
+    </script>
+</body>
+</html>
